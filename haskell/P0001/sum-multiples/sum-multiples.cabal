@@ -1,0 +1,64 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a6187a1d61ded95bff3f96834bc5c1ebb15c23f6213b953dc79a1e14f317da04
+
+name:           sum-multiples
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/sum-multiples#readme>
+homepage:       https://github.com/githubuser/sum-multiples#readme
+bug-reports:    https://github.com/githubuser/sum-multiples/issues
+author:         Stefano Tondo
+maintainer:     stondo@egmail.com
+copyright:      2020 Stefano Tondo
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/sum-multiples
+
+library
+  exposed-modules:
+      Solution
+  other-modules:
+      Paths_sum_multiples
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable sum-multiples-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_sum_multiples
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , sum-multiples
+  default-language: Haskell2010
+
+test-suite sum-multiples-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      SolutionSpec
+      Paths_sum_multiples
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hspec
+    , sum-multiples
+  default-language: Haskell2010

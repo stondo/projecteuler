@@ -1,0 +1,48 @@
+{
+  "name": "sum_multiples",
+  "version": "0.1.0",
+  "description": "Project Euler Problem 1 Solution",
+  "main": "build/src/index.js",
+  "types": "build/src/index.d.ts",
+  "files": [
+    "build/src"
+  ],
+  "license": "Apache-2.0",
+  "keywords": [],
+  "scripts": {
+    "start": "node build/src/index.js summ 3 5 1000",
+    "test": "./node_modules/.bin/jest",
+    "check": "gts check",
+    "clean": "gts clean",
+    "compile": "tsc",
+    "fix": "gts fix",
+    "prepare": "npm run compile",
+    "pretest": "npm run compile",
+    "posttest": "npm run check"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "@types/node": "^10.0.3",
+    "gts": "^2.0.0",
+    "jest": "^25.3.0",
+    "ts-jest": "^25.3.1",
+    "typescript": "~3.8.0"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "./node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
+  "dependencies": {
+    "@types/ramda": "^0.27.3",
+    "@types/yargs": "^15.0.4",
+    "ramda": "^0.27.0",
+    "yargs": "^15.3.1"
+  }
+}
