@@ -9,4 +9,4 @@ By considering the terms in the Fibonacci sequence whose values do not exceed fo
 
 #### Print solution:
 
-`go run main.go sum_multiples.go -a 3 -b 5 -below 1000`
+`go run main.go fibonacci.go -below 4000000`
