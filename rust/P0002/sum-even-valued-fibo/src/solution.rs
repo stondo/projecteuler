@@ -9,8 +9,7 @@ pub fn sum_even_valued_fibo_below(below: u128) -> u128 {
       .map(|n| fibonacci(n))
       .filter(|n| n % 2 == 0 && *n != 0u128)
       .take_while(|n| *n < below)
-      .fold(0, |acc, i| acc + i); 
-     
+      .fold(0, |acc, i| acc + i);
 }
 
 #[cfg(test)]
