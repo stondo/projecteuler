@@ -3,7 +3,7 @@ use structopt::StructOpt;
 mod solution;
 use solution::sum_all_multiples_of_below;
 
-/// Search for a pattern in a file and display the lines that contain it.
+
 #[derive(StructOpt)]
 struct Cli {
     a: u128,
