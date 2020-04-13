@@ -11,6 +11,9 @@ readMaybe s = case reads s of
 printResult ::Int -> Int -> Int -> Int -> IO ()
 printResult a b below ans = print ("The sum of the multiples of " ++ show a ++ " and " ++ show b ++ " below " ++ show below ++ " is: " ++ show ans)
 
+printError :: IO ()
+printError = putStrLn "error: exactly three positive integers needed"
+
 main :: IO ()
 main = do 
     args <- getArgs
@@ -18,8 +21,8 @@ main = do
         [a, b, below] -> 
             case (ma, mb, mbelow) of
                 (Just a, Just b, Just below)  -> printResult a b below (sumAllMultiplesOfBelow a b below)
-                _                             -> putStrLn "error: exactly three integers needed"
+                _                             -> printError
                 where ma = readMaybe a :: Maybe Int
                       mb = readMaybe b :: Maybe Int
                       mbelow = readMaybe below :: Maybe Int
-        _ -> putStrLn "error: exactly three integers needed"
+        _ -> printError

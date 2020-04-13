@@ -1,4 +1,4 @@
-name:                sum-multiples
+name:                sum-even-valued-fibo
 version:             0.1.0.0
 github:              "stondo/projecteuler"
 license:             BSD3
@@ -26,7 +26,7 @@ library:
   source-dirs: src
 
 executables:
-  sum-multiples-exe:
+  sum-even-valued-fibo-exe:
     main:                Main.hs
     source-dirs:         app
     ghc-options:
@@ -34,10 +34,10 @@ executables:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - sum-multiples
+    - sum-even-valued-fibo
 
 tests:
-  sum-multiples-test:
+  sum-even-valued-fibo-test:
     main:                Spec.hs
     source-dirs:         test
     ghc-options:
@@ -45,5 +45,5 @@ tests:
     - -rtsopts
     - -with-rtsopts=-N
     dependencies:
-    - sum-multiples
+    - sum-even-valued-fibo
     - hspec
