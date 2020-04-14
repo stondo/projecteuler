@@ -15,7 +15,7 @@
 `stack test`
 
 ### Python
-`python _test_modulename.py_ -v`
+`python test_modulename.py -v`
 
 ### Typescript
 `yarn run test`
