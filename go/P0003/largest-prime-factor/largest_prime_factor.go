@@ -10,15 +10,12 @@ func isDivisibleBy(n uint64, m uint64) bool {
 
 func primeFactors(n uint64, acc []uint64) []uint64 {
 	if isDivisibleBy(n, 2) {
-		acc = append(acc, 2)
-		return primeFactors(n/2, acc)
+		return primeFactors(n/2, append(acc, 2))
 	}
 
-	for i := float64(3); i < math.Sqrt(float64(n)); i += 2 {
-		ui := uint64(i)
-		if isDivisibleBy(n, ui) {
-			acc = append(acc, ui)
-			return primeFactors(n/ui, acc)
+	for i := uint64(3); i < uint64(math.Round(math.Sqrt(float64(n)))); i += 2 {
+		if isDivisibleBy(n, i) {
+			return primeFactors(n/i, append(acc, i))
 		}
 	}
 
