@@ -1,0 +1,64 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 595554938a296623530e39161a37729ad3c76f631e0c52b80ad9b977260365df
+
+name:           largest-prime-factors
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/stondo/projecteuler#readme>
+homepage:       https://github.com/stondo/projecteuler#readme
+bug-reports:    https://github.com/stondo/projecteuler/issues
+author:         Stefano Tondo
+maintainer:     stondo@egmail.com
+copyright:      2020 Stefano Tondo
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/stondo/projecteuler
+
+library
+  exposed-modules:
+      Solution
+  other-modules:
+      Paths_largest_prime_factors
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable largest-prime-factors-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_largest_prime_factors
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , largest-prime-factors
+  default-language: Haskell2010
+
+test-suite largest-prime-factors-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      SolutionSpec
+      Paths_largest_prime_factors
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hspec
+    , largest-prime-factors
+  default-language: Haskell2010
