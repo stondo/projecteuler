@@ -36,15 +36,22 @@ func TestPrimeFactors(t *testing.T) {
 	}
 }
 
-func TestLargestPrimeFactor(t *testing.T) {
-	factors := []uint64{5, 7, 13, 29}
-	ans := largestPrimeFactor(factors)
+func TestLargestPrimeFactor1(t *testing.T) {
+	ans := largestPrimeFactor(13195)
 
 	if ans != uint64(29) {
-		t.Errorf("largestPrimeFactor([5, 7, 13, 29]) = %d; want 29", ans)
+		t.Errorf("largestPrimeFactor(13195) = %d; want 29", ans)
+	}
+}
+
+func TestLargestPrimeFactor2(t *testing.T) {
+	ans := largestPrimeFactor(600851475143)
+
+	if ans != uint64(6857) {
+		t.Errorf("largestPrimeFactor(600851475143) = %d; want 6857", ans)
 	}
 }
 
 func BenchmarkLargestPrimeFactors(b *testing.B) {
-	fmt.Println(largestPrimeFactor(primeFactors(600851475143, nil)))
+	fmt.Println(largestPrimeFactor(600851475143))
 }

@@ -11,6 +11,6 @@ var (
 
 func main() {
 	flag.Parse()
-	ans := largestPrimeFactor(primeFactors(*n, nil))
+	ans := largestPrimeFactor(*n)
 	fmt.Println("The largest prime factor of", *n, "is:", ans)
 }

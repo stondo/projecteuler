@@ -22,7 +22,9 @@ func primeFactors(n uint64, acc []uint64) []uint64 {
 	return append(acc, n)
 }
 
-func largestPrimeFactor(pfactors []uint64) uint64 {
+func largestPrimeFactor(n uint64) uint64 {
+	acc := make([]uint64, 0)
+	pfactors := primeFactors(n, acc)
 	max := pfactors[0]
 	for _, v := range pfactors {
 		if v > max {
