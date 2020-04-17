@@ -18,7 +18,7 @@ class TestLargestPrimeFactor(unittest.TestCase):
         """
         Test that the largestPrimeFactor of 600851475143 is 6857
         """
-        result = largest_prime_factor.largestPrimeFactor(largest_prime_factor.primeFactors(600851475143))
+        result = largest_prime_factor.largestPrimeFactor(600851475143)
         self.assertEqual(result, 6857)
 
 

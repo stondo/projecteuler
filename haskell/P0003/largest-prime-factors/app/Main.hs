@@ -20,7 +20,7 @@ main = do
     case args of
         [n] -> 
             case mn of
-                Just i -> printResult i (largestPrimeFactor $ primeFactors i [])
+                Just i -> printResult i (largestPrimeFactor i)
                 _      -> printError
                 where mn = readMaybe n :: Maybe Int
         _ -> printError

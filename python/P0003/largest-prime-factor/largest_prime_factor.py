@@ -8,7 +8,7 @@ def primeFactors(n, acc=None):
         acc.append(2)
         return primeFactors(n/2, acc)
     
-    for i in range(3, int(sqrt(n))):
+    for i in range(3, int(sqrt(n) + 1)):
         if n % i == 0:
             acc.append(i)
             return primeFactors(n/i, acc)
@@ -17,5 +17,5 @@ def primeFactors(n, acc=None):
     return acc
 
 
-def largestPrimeFactor(ns):
-    return max(primeFactors(ns))
+def largestPrimeFactor(n):
+    return max(primeFactors(n))

@@ -15,4 +15,4 @@ spec =
 
     describe "largestPrimeFactor 600851475143" $ do
       it "finds the largest prime factor of 600851475143" $ do
-        show (largestPrimeFactor $ primeFactors 600851475143 []) `shouldBe` "6857"
+        show (largestPrimeFactor 600851475143) `shouldBe` "6857"

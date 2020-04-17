@@ -13,7 +13,7 @@ func primeFactors(n uint64, acc []uint64) []uint64 {
 		return primeFactors(n/2, append(acc, 2))
 	}
 
-	for i := uint64(3); i < uint64(math.Round(math.Sqrt(float64(n)))); i += 2 {
+	for i := uint64(3); i < uint64(math.Round(math.Sqrt(float64(n)))+1); i += 2 {
 		if isDivisibleBy(n, i) {
 			return primeFactors(n/i, append(acc, i))
 		}
