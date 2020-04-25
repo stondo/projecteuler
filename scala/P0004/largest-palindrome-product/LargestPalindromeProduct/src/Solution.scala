@@ -25,17 +25,11 @@ object LargestPalindromeProduct {
       val leading = m / divisor
       val trailing = m % 10
 
-      // If first and last digit
-      // not same return false
       if (leading != trailing)
         return false;
 
-      // Removing the leading and trailing
-      // digit from number
       m = (m % divisor) / 10
 
-      // Reducing divisor by sa factor
-      // of 2 as 2 digits are dropped
       divisor = divisor / 100
     }
 
