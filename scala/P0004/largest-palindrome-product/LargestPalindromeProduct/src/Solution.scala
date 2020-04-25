@@ -45,7 +45,7 @@ object LargestPalindromeProduct {
   def isPalindromeRecursive(n: Int): Boolean = {
     def loop(n: Int, leading: Int, trailing: Int, divisor: Int): Boolean =
       (n, leading, trailing, divisor) match {
-        case (_, t, l, _) if t != l => false
+        case (_, l, t, _) if l != t => false
         case (n, _, _, d) if n != 0 =>
           loop((n % d) / 10, n/d, n%10, d/100)
         case _ => true
