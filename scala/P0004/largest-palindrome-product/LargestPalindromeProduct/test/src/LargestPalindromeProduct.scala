@@ -20,10 +20,10 @@ class LargestPalindromeProductSpec extends FlatSpec {
     assert(ans === 99000099)
   }
 
-//  "The largest palindrome made from the product of two 5-digit numbers" should "be 2147447412" in {
-//    val ans = largestPalindromeProductOfNDigit(5)
-//    assert(ans === 2147447412)
-//  }
+  "The largest palindrome made from the product of two 5-digit numbers" should "be 2147447412" in {
+    val ans = largestPalindromeProductOfNDigit(5)
+    assert(ans === 2147447412)
+  }
 
   "956459" should "not be palindrome" in {
     val ans = isPalindrome(956459)

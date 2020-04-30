@@ -5,13 +5,14 @@ import scala.math.pow
 object LargestPalindromeProduct {
 
   def largestPalindromeProductOfNDigit(n: Int): Int = {
-    val startValue = pow(10, n).toInt - 1
-    val minValue   = pow(10, n - 1).toInt
-    val mid        = (startValue - minValue) / 2
+//    val startValue = pow(10, n).toInt - 1
+//    val minValue   = pow(10, n - 1).toInt
+//    val mid        = (startValue - minValue) / 2
     (for {
-//      i <- LazyList.range(pow(10, n).toInt - 1, pow(10, n - 1).toInt, -1)
-      i <- LazyList.range(pow(10, n).toInt - 1, mid - mid / 2, -1)
-      j <- LazyList.range(pow(10, n).toInt - 1, mid, -1)
+      i <- LazyList.range(pow(10, n).toInt - 1, pow(10, n - 1).toInt, -1)
+      j <- LazyList.range(pow(10, n).toInt - 1, pow(10, n - 1).toInt, -1)
+//      i <- LazyList.range(pow(10, n).toInt - 1, mid - mid / 2, -1)
+//      j <- LazyList.range(pow(10, n).toInt - 1, mid, -1)
       prod = i * j
       // if isPalindrome(prod)
 //      if isPalindromeRecursive(prod)
@@ -32,6 +33,26 @@ object LargestPalindromeProduct {
 //    val minValue   = pow(10, n - 1).toInt
 //
 //    loop(startValue, startValue, minValue, startValue)
+//  }
+
+//  def largestPalindromeProductOfNDigit(n: Int): Int = {
+//
+//    def loop(upper: Int,
+//             lower: Int,
+//             end: Int,
+//             start: Int,
+//             ps: List[Int] = List.empty[Int]): List[Int] =
+//      (upper, lower, end, start, ps) match {
+//        case (u, l, e, _, acc) if u <= e && l <= e => acc
+//        case (u, l, e, s, acc) if (u * l).toString == (u * l).toString.reverse =>
+//          loop(s - 1, s - 1, e, s - 1, (u * l) +: acc)
+//        case (u, l, e, s, acc) if u > e => loop(u - 1, l - 1, e, s, acc)
+//      }
+//
+//    val start = pow(10, n).toInt - 1
+//    val end   = pow(10, n - 1).toInt
+//
+//    loop(start, start, end, start).max
 //  }
 
   def isPalindrome(n: Int): Boolean = {
