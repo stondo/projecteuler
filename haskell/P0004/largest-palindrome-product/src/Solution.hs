@@ -1,9 +1,10 @@
 module Solution
-    ( largestPalindromeProduct
+    ( largestPalindromeProductOfNDigit
     , subsequencesOfSize
     , primeFactors
     , partitions
     , unique
+    , isPalindromeProductOfNDigit
     ) where
 
 import Data.Char(intToDigit)   
@@ -37,8 +38,8 @@ subsequencesOfSize n xs = let l = length xs
    subsequencesBySize (x:xs) = let next = subsequencesBySize xs
                              in zipWith (++) ([]:next) (map (map (x:)) next ++ [[]])              
 
-largestPalindromeProduct :: Int -> Int
-largestPalindromeProduct n = head [prod | prod <- [start, start - 1..end], isPalindrome prod && isPalindromeProductOfNDigit n prod]
+largestPalindromeProductOfNDigit :: Int -> Int
+largestPalindromeProductOfNDigit n = head [prod | prod <- [start, start - 1..end], isPalindrome prod && isPalindromeProductOfNDigit n prod]
   where upperBound = 10^n - 1
         lowerBound = 10^(n - 1)
         start = upperBound*upperBound
@@ -47,9 +48,10 @@ largestPalindromeProduct n = head [prod | prod <- [start, start - 1..end], isPal
 
 isPalindromeProductOfNDigit :: Int -> Int -> Bool
 isPalindromeProductOfNDigit n pali = length (filter (==pali) prod) == 1
-  where pf = primeFactors pali []
+  where upperBound = 10^n
+        pf = primeFactors pali []
         sets = [map product p | p <- partitions pf, length p == 2]
-        fs = filter (\f -> head f < 10^n && head (tail f) < 10^n) sets
+        fs = filter (\f -> head f < upperBound && head (tail f) < upperBound) sets
         prod = map product fs
 
 partitions :: [a] -> [[[a]]]

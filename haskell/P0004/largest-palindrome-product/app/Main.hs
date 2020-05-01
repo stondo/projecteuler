@@ -20,7 +20,7 @@ main = do
     case args of
         [a] -> 
             case ma of
-                Just a  -> printResult a (largestPalindromeProduct a)
+                Just a  -> printResult a (largestPalindromeProductOfNDigit a)
                 _                             -> printError
                 where ma = readMaybe a :: Maybe Int                      
         _ -> printError

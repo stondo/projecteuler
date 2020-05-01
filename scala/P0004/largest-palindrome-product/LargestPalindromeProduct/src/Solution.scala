@@ -1,67 +1,95 @@
 package Solution
 
-import scala.math.pow
+import scala.math.{pow, sqrt}
+import scala.language.postfixOps
 
 object LargestPalindromeProduct {
 
-  def largestPalindromeProductOfNDigit(n: Int): Int = {
-//    val startValue = pow(10, n).toInt - 1
-//    val minValue   = pow(10, n - 1).toInt
-//    val mid        = (startValue - minValue) / 2
-    (for {
-      i <- LazyList.range(pow(10, n).toInt - 1, pow(10, n - 1).toInt, -1)
-      j <- LazyList.range(pow(10, n).toInt - 1, pow(10, n - 1).toInt, -1)
-//      i <- LazyList.range(pow(10, n).toInt - 1, mid - mid / 2, -1)
-//      j <- LazyList.range(pow(10, n).toInt - 1, mid, -1)
-      prod = i * j
-      // if isPalindrome(prod)
-//      if isPalindromeRecursive(prod)
-      if prod.toString == prod.toString.reverse
-    } yield prod).max
+  def partitions[T](list: List[T]): List[List[List[T]]] =
+    list match {
+      case Nil | _ :: Nil => // 0/1 elements
+        List(List(list))
+      case head :: tail => // 2+ elements
+        partitions(tail).flatMap(part => {
+          val joins =
+            part.indices.map(i =>
+              part.zip(LazyList.from(0)).map {
+                case (p, j) =>
+                  if (i == j) head +: p else p
+              }
+            )
+
+          (List(head) +: part) +: joins
+        })
+    }
+
+  def primeFactors(n: BigInt) = {
+    def loop(
+        n: BigInt,
+        acc: List[BigInt] = List.empty[BigInt]
+    ): List[BigInt] = {
+      if (n % 2 == 0) loop(n / 2, 2 +: acc)
+      else {
+        (for {
+          i <- (3 to sqrtBigInt(n).toInt + 1 by 2)
+          if (n % i == 0)
+        } yield i).headOption match {
+          case None    => if (n != 1) n +: acc else acc
+          case Some(v) => loop(n / v, v +: acc)
+        }
+      }
+    }
+
+    loop(n)
   }
 
-//  def largestPalindromeProductOfNDigit(n: Int): Int = {
-//
-//    def loop(i: Int, j: Int, minValue: Int, currentMaxValue: Int): Int =
-//      (i, j, minValue, currentMaxValue) match {
-//        case (a, b, _, _) if isPalindromeRecursive(a * b) => a * b
-//        case (a, b, min, max) if b >= min                 => loop(a, b - 1, min, max)
-//        case (a, _, min, max)                             => loop(a - 1, max - 1, min, max - 1)
-//      }
-//
-//    val startValue = pow(10, n).toInt - 1
-//    val minValue   = pow(10, n - 1).toInt
-//
-//    loop(startValue, startValue, minValue, startValue)
-//  }
+  def sqrtBigInt(n: BigInt): BigDecimal = {
+    val d = BigDecimal(n)
+    var a = BigDecimal(1.0)
+    var b = d
+    while (b - a >= 0) {
+      val mid = (a + b) / 2
+      if (mid * mid - d > 0) b = mid - 0.0001
+      else a = mid + 0.0001
+    }
+    b
+  }
 
-//  def largestPalindromeProductOfNDigit(n: Int): Int = {
-//
-//    def loop(upper: Int,
-//             lower: Int,
-//             end: Int,
-//             start: Int,
-//             ps: List[Int] = List.empty[Int]): List[Int] =
-//      (upper, lower, end, start, ps) match {
-//        case (u, l, e, _, acc) if u <= e && l <= e => acc
-//        case (u, l, e, s, acc) if (u * l).toString == (u * l).toString.reverse =>
-//          loop(s - 1, s - 1, e, s - 1, (u * l) +: acc)
-//        case (u, l, e, s, acc) if u > e => loop(u - 1, l - 1, e, s, acc)
-//      }
-//
-//    val start = pow(10, n).toInt - 1
-//    val end   = pow(10, n - 1).toInt
-//
-//    loop(start, start, end, start).max
-//  }
+  def largestPalindromeProductOfNDigit(n: BigInt): BigInt = {
+    def isPalindrome(m: BigInt): Boolean = m.toString == m.toString.reverse
+
+    def isPalindromeProductOfNDigit(n: BigInt, pali: BigInt): Boolean = {
+
+      val upperBound = BigInt((pow(10, n.toDouble)).toInt)
+      val pf = primeFactors(pali)
+      val sets = for {
+        p <- partitions(pf)
+        if p.size == 2
+      } yield p.map(_.product)
+      val fs = sets.filter(f => f.head < upperBound && f.tail.head < upperBound)
+
+      fs.map(_.product).filter(_ == pali).distinct.size == 1
+    }
+
+    def isPaliAndProductOfNDigit(pali: BigInt): Option[BigInt] =
+      if (isPalindrome(pali) && isPalindromeProductOfNDigit(n, pali)) Some(pali)
+      else None
+
+    val upperBound = BigInt((pow(10, n.toDouble) - 1).toInt)
+    val lowerBound = BigInt((pow(10, n.toDouble - 1)).toInt)
+    val start: BigInt = upperBound * upperBound
+    val end: BigInt = lowerBound * lowerBound
+
+    LazyList.from[BigInt](start to end by -1) flatMap (isPaliAndProductOfNDigit _ andThen (_.toList)) head
+  }
 
   def isPalindrome(n: Int): Boolean = {
-    var m       = n
+    var m = n
     var divisor = 1
     while (m / divisor >= 10) divisor *= 10;
 
     while (m != 0) {
-      val leading  = m / divisor
+      val leading = m / divisor
       val trailing = m % 10
 
       if (leading != trailing)
