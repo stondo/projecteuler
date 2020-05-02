@@ -11,23 +11,23 @@ spec =
 
     describe "largestPalindromeProduct 2" $ do
       it "find the largest palindrome of the product of 2-digit number" $ do
-        show (largestPalindromeProduct 2) `shouldBe` "9009"
+        show (largestPalindromeProductOfNDigit 2) `shouldBe` "9009"
 
     describe "largestPalindromeProduct 3" $ do
       it "find the largest palindrome of the product of 3-digit number" $ do
-        show (largestPalindromeProduct 3) `shouldBe` "906609"
+        show (largestPalindromeProductOfNDigit 3) `shouldBe` "906609"
 
     describe "largestPalindromeProduct 4" $ do
       it "find the largest palindrome of the product of 4-digit number" $ do
-        show (largestPalindromeProduct 4) `shouldBe` "99000099"       
+        show (largestPalindromeProductOfNDigit 4) `shouldBe` "99000099"       
         
     describe "largestPalindromeProduct 5" $ do
         it "find the largest palindrome of the product of 5-digit number" $ do
-          show (largestPalindromeProduct 5) `shouldBe` "9893443989"
+          show (largestPalindromeProductOfNDigit 5) `shouldBe` "9966006699"
 
     describe "largestPalindromeProduct 6" $ do
         it "find the largest palindrome of the product of 6-digit number" $ do
-          show (largestPalindromeProduct 6) `shouldBe` "999000000999"
+          show (largestPalindromeProductOfNDigit 6) `shouldBe` "999000000999"
 
     describe "primeFactors 99" $ do
       it "the prime factors of 99" $ do

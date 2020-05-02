@@ -20,9 +20,9 @@ class LargestPalindromeProductSpec extends FlatSpec {
     assert(ans === 99000099)
   }
 
-  // "The largest palindrome made from the product of two 5-digit numbers" should "be 9893443989" in {
+  // "The largest palindrome made from the product of two 5-digit numbers" should "be 9966006699" in {
   //   val ans = largestPalindromeProductOfNDigit(5)
-  //   assert(ans === BigInt("9893443989"))
+  //   assert(ans === BigInt("9966006699"))
   // }
 
   // "The largest palindrome made from the product of two 6-digit numbers" should "be 999000000999" in {

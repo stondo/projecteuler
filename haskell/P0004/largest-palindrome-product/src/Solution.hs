@@ -8,7 +8,7 @@ module Solution
     ) where
 
 import Data.Char(intToDigit)   
-import Control.Monad ( filterM )     
+import Control.Monad ( filterM )
 
 toInt :: Float -> Int
 toInt = round
@@ -47,12 +47,12 @@ largestPalindromeProductOfNDigit n = head [prod | prod <- [start, start - 1..end
         isPalindrome m = show m == reverse (show m)
 
 isPalindromeProductOfNDigit :: Int -> Int -> Bool
-isPalindromeProductOfNDigit n pali = length (filter (==pali) prod) == 1
+isPalindromeProductOfNDigit n pali =  not (null prods) && (maximum prods == pali)
   where upperBound = 10^n
         pf = primeFactors pali []
         sets = [map product p | p <- partitions pf, length p == 2]
         fs = filter (\f -> head f < upperBound && head (tail f) < upperBound) sets
-        prod = map product fs
+        prods = map product fs
 
 partitions :: [a] -> [[[a]]]
 partitions [] = [[]]
