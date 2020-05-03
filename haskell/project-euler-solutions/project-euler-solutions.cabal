@@ -1,0 +1,71 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.31.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: 258bdc71c5e808809cb30c48323c203e5d73afc40d97531822354e81e0d8a830
+
+name:           project-euler-solutions
+version:        0.1.0.0
+description:    Please see the README on GitHub at <https://github.com/githubuser/project-euler-solutions#readme>
+homepage:       https://github.com/githubuser/project-euler-solutions#readme
+bug-reports:    https://github.com/githubuser/project-euler-solutions/issues
+author:         Stefano Tondo
+maintainer:     stondo@gmail.com
+copyright:      2020 Stefano Tondo
+license:        BSD3
+license-file:   LICENSE
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/githubuser/project-euler-solutions
+
+library
+  exposed-modules:
+      Common
+      P0001
+      P0002
+      P0003
+      P0004
+  other-modules:
+      Paths_project_euler_solutions
+  hs-source-dirs:
+      src
+  build-depends:
+      base >=4.7 && <5
+  default-language: Haskell2010
+
+executable project-euler-solutions-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_project_euler_solutions
+  hs-source-dirs:
+      app
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , project-euler-solutions
+  default-language: Haskell2010
+
+test-suite project-euler-solutions-test
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      P0001Spec
+      P0002Spec
+      P0003Spec
+      P0004Spec
+      Paths_project_euler_solutions
+  hs-source-dirs:
+      test
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      base >=4.7 && <5
+    , hspec
+    , project-euler-solutions
+  default-language: Haskell2010
