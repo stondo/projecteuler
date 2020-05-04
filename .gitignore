@@ -3,3 +3,5 @@
 .idea
 new_problem.sh
 .scalafmt.conf
+__pycache__/
+ *.pyc
