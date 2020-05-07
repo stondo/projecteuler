@@ -7,16 +7,9 @@
 
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
+
+from common_funcs import fibonacci
 import itertools
-
-
-def fibonacci(n):
-    if n == 0:
-        return 0
-    elif n == 1:
-        return 1
-    else:
-        return fibonacci(n - 2) + fibonacci(n - 1)
 
 
 def fib_even_gen():

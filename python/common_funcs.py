@@ -1,9 +1,3 @@
-# Python: Largest prime factor
-
-# Problem 3
-# The prime factors of 13195 are 5, 7, 13 and 29.
-
-# What is the largest prime factor of the number 600851475143 ?
 from math import sqrt
 
 
@@ -24,5 +18,10 @@ def primeFactors(n, acc=None):
     return acc
 
 
-def largestPrimeFactor(n):
-    return max(primeFactors(n))
+def fibonacci(n):
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 1
+    else:
+        return fibonacci(n - 2) + fibonacci(n - 1)

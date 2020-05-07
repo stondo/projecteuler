@@ -1,4 +1,4 @@
-import sum_multiples
+import P0001
 import unittest
 
 
@@ -11,14 +11,14 @@ class TestSumMultiples(unittest.TestCase):
         """
         Test that the sumAllMultiplesOfBelow of 3 and 5 below 10 returns the correct total
         """
-        result = sum_multiples.sumAllMultiplesOfBelow(3, 5, 10)
+        result = P0001.sumAllMultiplesOfBelow(3, 5, 10)
         self.assertEqual(result, 23)
 
     def test_sum_multiples_of_3_and_5_below_1000(self):
         """
         Test that the sumAllMultiplesOfBelow of 3 and 5 below 1000 returns the correct total
         """
-        result = sum_multiples.sumAllMultiplesOfBelow(3, 5, 1000)
+        result = P0001.sumAllMultiplesOfBelow(3, 5, 1000)
         self.assertEqual(result, 233168)
 
 
