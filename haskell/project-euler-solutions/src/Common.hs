@@ -6,6 +6,8 @@ module Common
     , primeFactors
     , subsequencesOfSize
     , partitions
+    , primes
+    , pfactors
     ) where
 
 isMultipleOf :: Int -> Int -> Bool
@@ -25,7 +27,7 @@ primeFactors :: Int -> [Int] -> [Int]
 primeFactors n acc
         | n `mod` 2 == 0 = primeFactors (n `div` 2) (2 : acc)
         | otherwise      = case mhead of 
-                            Just (h, hs)  -> primeFactors h hs
+                            Just (h, hs)  -> if h == 1 then acc else primeFactors h hs
                             Nothing -> n : acc
         where sqrtRoundedPlusOne = round sqrt_n_plus_one
               sqrt_n_plus_one = sqrt (fromIntegral n) + 1
@@ -47,4 +49,25 @@ partitions (x:xs) = expand x $ partitions xs where
 
     extend :: a -> [[a]] -> [[[a]]]
     extend x [] = [[[x]]]
-    extend x (y:ys) = ((x:y):ys) : map (y:) (extend x ys)                             
+    extend x (y:ys) = ((x:y):ys) : map (y:) (extend x ys)
+
+
+primes :: [Integer]
+primes = 2:([3..] `minus` composites)
+    where
+    composites = union [multiples p | p <- primes]
+    multiples n = map (n*) [n..]
+    (x:xs) `minus` (y:ys) | x < y = x:(xs `minus` (y:ys))
+                          | x == y = xs `minus` ys
+                          | x > y = (x:xs) `minus` ys
+    union = foldr merge []
+        where merge (x:xs) ys = x:merge' xs ys
+              merge' (x:xs) (y:ys) | x < y = x:merge' xs (y:ys)
+                                   | x == y = x:merge' xs ys
+                                   | x > y = y:merge' (x:xs) ys
+
+
+pfactors :: Integer -> [Integer]
+pfactors n = factors
+  where factors   = take 100 [p | p <- primes, n `mod` p == 0]
+        sqrt_n_plus_one = ceiling $ sqrt (fromIntegral n) + 1
