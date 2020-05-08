@@ -7,7 +7,6 @@ module Common
     , subsequencesOfSize
     , partitions
     , primes
-    , pfactors
     ) where
 
 isMultipleOf :: Int -> Int -> Bool
@@ -65,9 +64,3 @@ primes = 2:([3..] `minus` composites)
               merge' (x:xs) (y:ys) | x < y = x:merge' xs (y:ys)
                                    | x == y = x:merge' xs ys
                                    | x > y = y:merge' (x:xs) ys
-
-
-pfactors :: Integer -> [Integer]
-pfactors n = factors
-  where factors   = take 100 [p | p <- primes, n `mod` p == 0]
-        sqrt_n_plus_one = ceiling $ sqrt (fromIntegral n) + 1
