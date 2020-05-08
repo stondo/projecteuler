@@ -6,7 +6,7 @@ import Test.Hspec (Spec, describe, context, it, shouldBe)
 -- |Required for auto-discpvery
 spec :: Spec
 spec =
-  describe "Project Euler Problem5 Solution" $ do
+  describe "Project Euler Problem 6 Solution" $ do
 
     describe "differenceBetweenSumOfTheSquaresAndSquareOfTheSum 10" $ do
       it "2640 is the difference between the sum of the squares of the first ten natural numbers and the square of the sum." $ do

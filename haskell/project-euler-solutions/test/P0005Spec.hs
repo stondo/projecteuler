@@ -6,7 +6,7 @@ import Test.Hspec (Spec, describe, context, it, shouldBe)
 -- |Required for auto-discpvery
 spec :: Spec
 spec =
-  describe "Project Euler Problem5 Solution" $ do
+  describe "Project Euler Problem 5 Solution" $ do
 
     describe "smallestIntegerEvenlyDivByAnyBelow 10" $ do
       it "2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder." $ do

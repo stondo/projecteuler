@@ -7,7 +7,7 @@ import Test.Hspec (Spec, describe, context, it, shouldBe)
 -- |Required for auto-discpvery
 spec :: Spec
 spec =
-  describe "Project Euler Problem4 Solution" $ do
+  describe "Project Euler Problem 4 Solution" $ do
 
     describe "largestPalindromeProduct 2" $ do
       it "the largest palindrome of the product of 2-digit number is 9009" $ do

@@ -7,7 +7,7 @@ import Test.Hspec (Spec, describe, context, it, shouldBe)
 -- |Required for auto-discpvery
 spec :: Spec
 spec =
-  describe "Project Euler Problem1 Solution" $ do
+  describe "Project Euler Problem 1 Solution" $ do
 
     describe "sumAllMultiplesOfBelow 3 5 10" $ do
       it "the sum of the multiples of 3 and 5 below 10 is 23" $ do

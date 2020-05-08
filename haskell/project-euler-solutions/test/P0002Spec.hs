@@ -7,7 +7,7 @@ import Test.Hspec (Spec, describe, context, it, shouldBe)
 -- |Required for auto-discpvery
 spec :: Spec
 spec =
-  describe "Project Euler Problem2 Solution" $ do
+  describe "Project Euler Problem 2 Solution" $ do
 
     describe "fibonacci 6" $ do
       it "the 6th (0 index based) Fibonacci's number is 8" $ do

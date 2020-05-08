@@ -8,7 +8,7 @@ import Test.Hspec (Spec, describe, context, it, shouldBe)
 -- |Required for auto-discpvery
 spec :: Spec
 spec =
-  describe "Project Euler Problem3 Solution" $ do
+  describe "Project Euler Problem 3 Solution" $ do
 
     describe "primeFactors 13195" $ do
       it "the prime factor of 13195 are [29,13,7,5]" $ do

@@ -6,7 +6,7 @@ import Test.Hspec (Spec, describe, context, it, shouldBe)
 -- |Required for auto-discpvery
 spec :: Spec
 spec =
-  describe "Project Euler Problem5 Solution" $ do
+  describe "Project Euler Problem 7 Solution" $ do
 
     describe "getNthPrime 6" $ do
       it "The 6th prime number is: 13" $ do
