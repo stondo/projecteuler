@@ -38,5 +38,5 @@ findNsDigitWithGreatestProductInStr s n = go s n []
   where go s' n' acc = do {
       let digits = map digitToInt $ take n' s'
       ; let prod = product digits
-      ; if length s' >= n then go (drop 1 s') n' (if (prod >= product acc) then digits else acc) else acc
+      ; if length s' >= n then go (drop 1 s') n' (if prod >= product acc then digits else acc) else acc
     }

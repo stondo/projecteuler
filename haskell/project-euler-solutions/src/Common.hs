@@ -7,7 +7,10 @@ module Common
     , subsequencesOfSize
     , partitions
     , primes
+    , isInt
     ) where
+
+isInt x = x == fromInteger (round x)        
 
 isMultipleOf :: Int -> Int -> Bool
 isMultipleOf n m = n `mod` m == 0
