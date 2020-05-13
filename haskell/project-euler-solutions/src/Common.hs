@@ -10,6 +10,7 @@ module Common
     , isInt
     ) where
 
+isInt :: RealFrac a => a -> Bool
 isInt x = x == fromInteger (round x)        
 
 isMultipleOf :: Int -> Int -> Bool
@@ -22,7 +23,7 @@ maybeHead (h:_) = Just h
 toInt :: Float -> Int
 toInt = round
 
-unique :: [Int] -> [Int]
+unique :: (Eq a, Ord a, Enum a) => [a] -> [a]
 unique xs = [x | (x,y) <- zip xs [0..], x `notElem` take y xs]
 
 primeFactors :: Int -> [Int] -> [Int]

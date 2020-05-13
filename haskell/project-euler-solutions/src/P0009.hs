@@ -13,21 +13,22 @@ module P0009
     ( genPythagoreanTripletsThatSumTo
     ) where
 
-import Common (subsequencesOfSize, maybeHead)
+import Common (subsequencesOfSize, maybeHead, unique)
 import Data.List (sort)
 
 
 -- Optimize
 genPythagoreanTripletsThatSumTo :: (Eq a, Ord a, Enum a, Floating a) => a -> [a]
-genPythagoreanTripletsThatSumTo n = head $ filter (`cond` n) sortedPartitions
-    where start      = n/5
+genPythagoreanTripletsThatSumTo n = if not $ null triplets then head triplets else [] 
+    where start      = 1
           end        = n/2
           squares    = map (^2) [start..end]
-          sortedPartitions = map sort $ subsequencesOfSize 3 squares
-          cond arr n = (sqa + sqb + sqc) == n && a + b == c
+          sortedPartitions = [sub | sub <- subsequencesOfSize 3 squares, isValid sub n]
+          isValid arr n = (sqa + sqb + sqc) == n && a + b == c
              where a = head arr
                    b = head $ tail arr
                    c = last arr
                    sqa = sqrt a
                    sqb = sqrt b
                    sqc = sqrt c
+          triplets   = map (map sqrt) sortedPartitions
