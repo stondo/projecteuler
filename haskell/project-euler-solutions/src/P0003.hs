@@ -15,4 +15,4 @@ import Common (maybeHead, primeFactors)
 
 largestPrimeFactor :: Int -> Int
 largestPrimeFactor n = maximum prime_factors
-                where prime_factors = primeFactors n []
+                where prime_factors = primeFactors n

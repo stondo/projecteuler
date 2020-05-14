@@ -11,8 +11,8 @@ spec =
   describe "Project Euler Problem 3 Solution" $ do
 
     describe "primeFactors 13195" $ do
-      it "the prime factor of 13195 are [29,13,7,5]" $ do
-         show (primeFactors 13195 []) `shouldBe` "[29,13,7,5]"
+      it "the prime factor of 13195 are [5,7,13,29]" $ do
+         show (primeFactors 13195) `shouldBe` "[5,7,13,29]"
 
     describe "largestPrimeFactor 600851475143" $ do
       it "the largest prime factor of 600851475143 is 6857" $ do
