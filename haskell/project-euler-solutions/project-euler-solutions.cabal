@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 3533ea854827870daa6622b5fa15663e24e5b5ddfa1bd39e3e224620d4f83b72
+-- hash: a153628cc32087fba43a0466153dee65508ffd416c3f31f40c7c0b4b1f6fe144
 
 name:           project-euler-solutions
 version:        0.1.0.0
@@ -38,6 +38,7 @@ library
       P0008
       P0009
       P0010
+      P0011
       P0012
   other-modules:
       Paths_project_euler_solutions
@@ -45,6 +46,8 @@ library
       src
   build-depends:
       base >=4.7 && <5
+    , split >=0.2.2 && <0.3
+    , universe-base >=1.0.1 && <=1.1.1
   default-language: Haskell2010
 
 executable project-euler-solutions-exe
@@ -57,6 +60,8 @@ executable project-euler-solutions-exe
   build-depends:
       base >=4.7 && <5
     , project-euler-solutions
+    , split >=0.2.2 && <0.3
+    , universe-base >=1.0.1 && <=1.1.1
   default-language: Haskell2010
 
 test-suite project-euler-solutions-test
@@ -73,6 +78,7 @@ test-suite project-euler-solutions-test
       P0008Spec
       P0009Spec
       P0010Spec
+      P0011Spec
       P0012Spec
       Paths_project_euler_solutions
   hs-source-dirs:
@@ -82,4 +88,6 @@ test-suite project-euler-solutions-test
       base >=4.7 && <5
     , hspec
     , project-euler-solutions
+    , split >=0.2.2 && <0.3
+    , universe-base >=1.0.1 && <=1.1.1
   default-language: Haskell2010
