@@ -10,6 +10,7 @@ module Common
     , isInt
     , getNthTriangleNum
     , getAllDivisorOf
+    , collatz
     ) where
 
 isInt :: RealFrac a => a -> Bool
@@ -73,3 +74,13 @@ primes = 2:([3..] `minus` composites)
 
 getNthTriangleNum ::Integer -> Integer
 getNthTriangleNum n = n * (n + 1) `div` 2
+
+-- n → n/2 (n is even)
+-- n → 3n + 1 (n is odd)
+collatz :: Int -> [Int]
+collatz 1 = [1]
+collatz n = n : collatz (next n)
+        where nDivTwo       = n `div` 2
+              threeNPlusOne = 3*n+1
+              isEven n = n `mod` 2 == 0
+              next n = if isEven n then nDivTwo else threeNPlusOne                  
