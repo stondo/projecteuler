@@ -79,8 +79,5 @@ getNthTriangleNum n = n * (n + 1) `div` 2
 -- n → 3n + 1 (n is odd)
 collatz :: Int -> [Int]
 collatz 1 = [1]
-collatz n = n : collatz (next n)
-        where nDivTwo       = n `div` 2
-              threeNPlusOne = 3*n+1
-              isEven n = n `mod` 2 == 0
-              next n = if isEven n then nDivTwo else threeNPlusOne                  
+collatz n = n : collatz next
+        where next = if n `mod` 2 == 0 then n `div` 2 else 3*n+1
