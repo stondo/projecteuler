@@ -2,6 +2,7 @@ module Common
     ( isMultipleOf
     , maybeHead
     , toInt
+    , fibonacciMemo
     , unique
     , primeFactors
     , subsequencesOfSize
@@ -12,6 +13,21 @@ module Common
     , getAllDivisorOf
     , collatz
     ) where
+
+
+import Data.Function (fix)
+
+
+memoize :: (Int -> a) -> (Int -> a)
+memoize f = (map f [0 ..] !!)
+
+fibonacci :: (Int -> Integer) -> Int -> Integer
+fibonacci f 0 = 0
+fibonacci f 1 = 1
+fibonacci f n = f (n - 1) + f (n - 2)
+
+fibonacciMemo :: Int -> Integer
+fibonacciMemo = fix (memoize . fibonacci)
 
 isInt :: RealFrac a => a -> Bool
 isInt x = x == fromInteger (round x)        
