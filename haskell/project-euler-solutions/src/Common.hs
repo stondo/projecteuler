@@ -12,6 +12,9 @@ module Common
     , getNthTriangleNum
     , getAllDivisorOf
     , collatz
+    , factorialMemo
+    , binomial
+    , tartaglia
     ) where
 
 
@@ -97,3 +100,19 @@ collatz :: Int -> [Int]
 collatz 1 = [1]
 collatz n = n : collatz next
         where next = if n `mod` 2 == 0 then n `div` 2 else 3*n+1
+
+factorial :: (Int -> Integer) -> Int -> Integer
+factorial _ 0 = 1
+factorial _ 1 = 1
+factorial f n = toInteger n * f (n - 1)
+
+factorialMemo :: Int -> Integer
+factorialMemo = fix (memoize . factorial)
+
+
+binomial :: Int -> Int -> Integer
+binomial n k = factorialMemo n `div` (factorialMemo k * factorialMemo (n - k))
+
+
+tartaglia :: Int -> [Integer]
+tartaglia n = [binomial n k | k <- [0..n]]

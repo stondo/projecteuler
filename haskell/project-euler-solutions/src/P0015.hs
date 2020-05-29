@@ -10,16 +10,21 @@ module P0015
     ( countRoutes
     ) where
 
-countRoutes :: Integer -> Integer
-countRoutes n = go r (n-1) [1]
-  where r   = [2..n+1]
-        go :: [Integer] -> Integer -> [Integer] -> Integer
-        go _ 0 _        = last r
-        go [] loop acc  
-                        | (loop-1) == 0 = last acc 
-                        | otherwise     = go (tail acc) (loop-1) [1]
-        go row loop acc = go (tail row) loop (acc ++ [head row + last acc])
+import Common (binomial)      
 
+
+countRoutes :: Int -> Integer
+countRoutes n = binomial (n*2) n
+
+-- countRoutes :: Integer -> Integer
+-- countRoutes n = go r (n-1) [1]
+--   where r   = [2..n+1]
+--         go :: [Integer] -> Integer -> [Integer] -> Integer
+--         go _ 0 _        = last r
+--         go [] loop acc  
+--                         | (loop-1) == 0 = last acc 
+--                         | otherwise     = go (tail acc) (loop-1) [1]
+--         go row loop acc = go (tail row) loop (acc ++ [head row + last acc])
 
 
 -- Too slow for big grids
