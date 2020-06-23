@@ -1,4 +1,3 @@
-{-# LANGUAGE DataKinds #-}
 -- Maximum path sum I
 
 -- Problem 18
@@ -34,62 +33,12 @@
 
 module P0018
     ( findMaxTopBottomTotal
-    , buildTreeOfInt
     , buildMatrixFromList
     ) where
     
     
 import Data.List (elemIndex)
 import Data.Maybe (fromMaybe, fromJust)
-
-
--- data Tree = Leaf | Node Int Tree Tree deriving Show
-
--- 3 7 4 2 4 6 8 5 9 3
--- buildTreeOfIntFromList :: [Int] -> Tree
--- buildTreeOfIntFromList ns = growTree (Node (head ns) Leaf Leaf) 1 (tail ns)
---   where growTree :: Tree -> [Int] -> Int -> Tree
---         growTree t [] _                = t
---         growTree (Node n t1 t2) ns lvl = Node n (growTree (Node (head elems)) (Node (head $ tail elems)) ) ()
---           where elems = take (lvl+1) ns
---                 nexts = drop (lvl+1) ns
-
-
--- buildTreeOfIntFromList (h:t) = Node h Leaf Leaf
-
--- data Tree a = TNil | Node a (Tree a) (Tree a) deriving Show
-
--- buildTreeOfInt :: [Int] -> Tree Int
--- buildTreeOfInt ns = growTree (Node (head ns) TNil TNil) 1 (tail ns)
---   where growTree :: Tree Int -> Int -> [Int] -> Tree Int
---         growTree (Node a t1 t2) n arr 
---                 | null arr                  = Node a t1 t2
---                 | otherwise                 = Node a (growTree (Node (head t1elems) TNil) (n+1) (drop (n+1) arr))
---                     where t1elems = take (n+1) arr
---                           t2elems = drop (n+1) arr
-
-
-data Tree a = Nil| Node [a] (Tree a) deriving Show
-
-buildTreeOfInt :: [Int] -> Tree Int
-buildTreeOfInt ns = growTree (Node [head ns] Nil) 1 (tail ns)
-  where growTree :: Tree Int -> Int -> [Int] -> Tree Int
-        growTree (Node a tmul) n arr 
-                | null arr                  = Node a tmul
-                | (length arr - n+1) <= n+3 = Node a (Node arr Nil)
-                | otherwise                 = Node a (growTree (Node (take (n+1) arr) Nil) (n+1) (drop (n+1) arr))
-
-
--- findMaxTopBottomTotal :: Tree Int -> Int
--- findMaxTopBottomTotal Nil = 0
--- findMaxTopBottomTotal (Node as tmul) = go (Node as tmul) 0
---   where go :: Tree Int -> Int -> Int
---         go Nil _               = 0
---         go (Node [a] tmul) _   = a + go tmul 0
---         go (Node as tmul) idx  = max + go tmul maxIdx
---           where (max, maxIdx) = if as!!idx >= as!!(idx+1) then (as!!idx, idx) else (as!!(idx+1), idx+1)
-
-
 
 buildMatrixFromList :: [Int] -> [[Int]]
 buildMatrixFromList ns = go ns 1
@@ -104,12 +53,3 @@ findMaxTopBottomTotal :: [[Int]] -> Int
 findMaxTopBottomTotal [as,bs] = if (head as + head bs) > (head (tail as) + head bs) then head as + head bs else head (tail as) + head bs
 findMaxTopBottomTotal (as:t) = findMaxTopBottomTotal ([if e + as!!elIdx > e + as!!(elIdx+1) then e + as!!elIdx else e + as!!(elIdx+1) | e <- elems, let elIdx = fromJust $ elemIndex e elems] : tail t)
   where elems = head t
-
-
--- findMaxTopBottomTotal :: [[Int]] -> Int
--- findMaxTopBottomTotal ns = go ns 0
---   where go :: [[Int]] -> Int -> Int
---         go [] _ = 0
---         go ([a]:t) idx = a + go t 0            
---         go (as:t) idx = max + go t maxIdx            
---           where (max, maxIdx) = if as!!idx >= as!!(idx+1) then (as!!idx, idx) else (as!!(idx+1), idx+1)
