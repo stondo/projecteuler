@@ -9,4 +9,4 @@ module P0005
     ) where
 
 smallestIntegerEvenlyDivByAnyBelow :: Int -> Int
-smallestIntegerEvenlyDivByAnyBelow m = head [n | n <- [1..], foldr (\i acc -> (n `mod` i == 0) && acc) True [2..m]]    
+smallestIntegerEvenlyDivByAnyBelow m = head [n | n <- [1..], foldr (\i acc -> (n `mod` i == 0) && acc) True [2..m]]
