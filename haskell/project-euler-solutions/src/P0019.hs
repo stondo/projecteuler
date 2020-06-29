@@ -49,11 +49,11 @@ firstDayOfMonth d = fst $ nextDay (d,0)
 fillMonthFrom :: Month -> Int -> Day -> (Month, [(Day, Int)])
 fillMonthFrom m n d = (m, foldl (\acc _ -> nd acc) [firstDay] [2..n])
   where firstDay = (firstDayOfMonth d, 1)
-        nd acc = (nextDay $ head acc) : acc
+        nd acc = nextDay (head acc) : acc
 
 
 fillMonthsOfYear :: Int -> [(Month, [(Day, Int)])]
-fillMonthsOfYear y = foldl (\acc (m,d) -> (fillMonthFrom m d (firstDay m (if null acc then [] else acc)) ) : acc) [] (months `zip` monthsDay)
+fillMonthsOfYear y = foldl (\acc (m,d) -> fillMonthFrom m d (firstDay m (if null acc then [] else acc)) : acc) [] (months `zip` monthsDay)
   where monthsDay = [31, if isLeap y then 29 else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         months    = [January .. December]
         firstDay :: Month -> [(Month, [(Day, Int)])] -> Day
