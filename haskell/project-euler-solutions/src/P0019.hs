@@ -53,11 +53,12 @@ fillMonthFrom m n d = (m, foldl (\acc _ -> nd acc) [firstDay] [2..n])
 
 
 fillMonthsOfYear :: Int -> [(Month, [(Day, Int)])]
-fillMonthsOfYear y = foldl (\acc (m,d) -> fillMonthFrom m d (firstDay m (if null acc then [] else acc)) : acc) [] (months `zip` monthsDay)
+fillMonthsOfYear y = foldl (\acc (m,d) -> fillMonthFrom m d (firstDay acc) : acc) [] (months `zip` monthsDay)
   where monthsDay = [31, if isLeap y then 29 else 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         months    = [January .. December]
-        firstDay :: Month -> [(Month, [(Day, Int)])] -> Day
-        firstDay m lm = if m == January then getFirstDayOfYear y else firstDayOfMonth $ getLastDayOfMonth $ head lm
+        firstDay :: [(Month, [(Day, Int)])] -> Day
+        firstDay acc | null acc  = getFirstDayOfYear y
+                     | otherwise = firstDayOfMonth $ getLastDayOfMonth $ head acc
       
 
 fillYearsOfCentury :: Int -> [[(Month, [(Day, Int)])]]
@@ -69,9 +70,10 @@ getLastDayOfMonth :: (Month, [(Day, Int)]) -> Day
 getLastDayOfMonth (_, h:_) = fst h
 
 
-countSundayFirst :: [(Month, [(Day, Int)])] -> Int
-countSundayFirst []    = 0
-countSundayFirst ((m,ds):t) = length (filter (\(d,n) -> d == Sunday && n == 1) ds) + countSundayFirst t
+countSundayFirst :: [[(Month, [(Day, Int)])]] -> Int
+countSundayFirst []                 = 0
+countSundayFirst [[]]               = 0
+countSundayFirst (((m, ds):t):tt)   = length (filter (\(d,n) -> d == Sunday && n == 1) ds) + countSundayFirst [t] + countSundayFirst tt
 
 
 getCenturyStartEnd :: Int -> (Int, Int)
@@ -83,17 +85,17 @@ getCenturyStartEndFromYear y =  head $ filter (\(s,e) -> (abs(y-s) + abs(e-y)) =
 
     
 getFirstDayOfYear :: Int -> Day
-getFirstDayOfYear y | y == 1900 = janFirst1900 
+getFirstDayOfYear y | y == 1900 = Monday
                     | otherwise = getDay diff
   where (cs,ce) = getCenturyStartEndFromYear y
-        janFirst1900 = Monday
-        allLeapsUntil =  if y > 1900 then filter (\cy -> cy < y && isLeap cy) [1900..ce] else filter (\cy -> cy > y && isLeap cy) [y..1900]
+        allLeapsUntil | y > 1900  = filter (\cy -> cy < y && isLeap cy) [1900..ce]
+                      | otherwise = filter (\cy -> cy > y && isLeap cy) [y..1900]
         diff = (abs(y - 1900) + length allLeapsUntil) `mod` 7
         getDay n = case n of 
-                        0 -> Monday
-                        1 -> if y > 1900 then Tuesday else Sunday
-                        2 -> if y > 1900 then Wednesday else Saturday
-                        3 -> if y > 1900 then Thursday else Friday
-                        4 -> if y > 1900 then Friday else Thursday
-                        5 -> if y > 1900 then Saturday else Wednesday
-                        6 -> if y > 1900 then Sunday else Tuesday
+          0 -> Monday
+          1 -> if y > 1900 then Tuesday else Sunday
+          2 -> if y > 1900 then Wednesday else Saturday
+          3 -> if y > 1900 then Thursday else Friday
+          4 -> if y > 1900 then Friday else Thursday
+          5 -> if y > 1900 then Saturday else Wednesday
+          6 -> if y > 1900 then Sunday else Tuesday
