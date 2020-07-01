@@ -51,7 +51,7 @@ unique :: (Eq a, Ord a, Enum a) => [a] -> [a]
 unique xs = [x | (x,y) <- zip xs [0..], x `notElem` take y xs]
 
 getAllDivisorOf :: Integer -> [Integer]
-getAllDivisorOf n = foldr (\i acc -> i : acc ++ [n `div` i]) [] $ filter (\i -> n `mod` i == 0) [1..end]
+getAllDivisorOf n = unique $ foldr (\i acc -> i : acc ++ [n `div` i]) [] $ filter (\i -> n `mod` i == 0) [1..end]
   where end               = ceiling $ sqrt (fromInteger n)
 
 primeFactors :: Integral a => a -> [a]
