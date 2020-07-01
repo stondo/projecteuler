@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: d73052f788e54ca9c60e2b384a327d6651448eb2163e86d3027d4cfa6610b8c3
+-- hash: d96b2231fb0769624a9e954b82ace22d6df090c0e26793a1a0daa8d6fa9ec60d
 
 name:           project-euler-solutions
 version:        0.1.0.0
@@ -49,6 +49,7 @@ library
       P0019
       P0020
       P0021
+      P0022
   other-modules:
       Paths_project_euler_solutions
   hs-source-dirs:
@@ -100,6 +101,7 @@ test-suite project-euler-solutions-test
       P0019Spec
       P0020Spec
       P0021Spec
+      P0022Spec
       Paths_project_euler_solutions
   hs-source-dirs:
       test
