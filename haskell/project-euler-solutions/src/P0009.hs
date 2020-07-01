@@ -14,7 +14,6 @@ module P0009
     ) where
 
 import Common (subsequencesOfSize, maybeHead, unique)
-import Data.List (sort)
 
 
 -- Optimize
